@@ -1,7 +1,6 @@
 package alexanders.mods.cie;
 
 import de.ellpeck.rockbottom.api.IGameInstance;
-import de.ellpeck.rockbottom.api.RockBottomAPI;
 import de.ellpeck.rockbottom.api.assets.IAssetManager;
 import de.ellpeck.rockbottom.api.entity.player.AbstractEntityPlayer;
 import de.ellpeck.rockbottom.api.net.chat.Command;
@@ -19,7 +18,7 @@ public class CheatCommand extends Command
     {
         game.scheduleAction(() ->
                             {
-                                if(game.getPlayer().getUniqueId() != player.getUniqueId())
+                                if (game.getPlayer().getUniqueId() != player.getUniqueId())
                                     player.sendPacket(new GuiOpenPacket());
                                 else
                                 {

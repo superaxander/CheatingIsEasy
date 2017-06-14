@@ -5,11 +5,8 @@ import de.ellpeck.rockbottom.api.IGameInstance;
 import de.ellpeck.rockbottom.api.RockBottomAPI;
 import de.ellpeck.rockbottom.api.assets.IAssetManager;
 import de.ellpeck.rockbottom.api.event.IEventHandler;
-import de.ellpeck.rockbottom.api.gui.Gui;
 import de.ellpeck.rockbottom.api.mod.IMod;
 import de.ellpeck.rockbottom.api.net.chat.IChatLog;
-
-import java.util.HashMap;
 
 import static alexanders.mods.cie.Reference.*;
 
@@ -49,7 +46,7 @@ public class CheatingIsEasy implements IMod
     @Override
     public String getDescription()
     {
-        return RockBottomAPI.getGame().getAssetManager().localize(RockBottomAPI.createRes(this,"desc.mod"));
+        return RockBottomAPI.getGame().getAssetManager().localize(RockBottomAPI.createRes(this, "desc.mod"));
     }
 
     @Override
@@ -57,7 +54,7 @@ public class CheatingIsEasy implements IMod
     {
         RockBottomAPI.PACKET_REGISTRY.register(RockBottomAPI.PACKET_REGISTRY.getNextFreeId(), GuiOpenPacket.class);
         IChatLog.registerCommand(new CheatCommand("c", assetManager.localize(RockBottomAPI.createRes(this, "desc.command")), 10));
-        
+
     }
 
     @Override

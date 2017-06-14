@@ -1,7 +1,6 @@
 package alexanders.mods.cie;
 
 import de.ellpeck.rockbottom.api.gui.container.ContainerSlot;
-import de.ellpeck.rockbottom.api.inventory.IInventory;
 import de.ellpeck.rockbottom.api.item.ItemInstance;
 
 public class TrashSlot extends ContainerSlot

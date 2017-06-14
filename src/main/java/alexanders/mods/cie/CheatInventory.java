@@ -7,17 +7,16 @@ import de.ellpeck.rockbottom.api.item.Item;
 import de.ellpeck.rockbottom.api.item.ItemInstance;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class CheatInventory implements IInventory
 {
     private static List<Item> itemList = null;
-    
+
     @Override
     public void set(int i, ItemInstance itemInstance)
     {
-        
+
     }
 
     @Override
@@ -48,7 +47,7 @@ public class CheatInventory implements IInventory
     @Override
     public void notifyChange(int slot)
     {
-        
+
     }
 
     @Override
@@ -62,9 +61,10 @@ public class CheatInventory implements IInventory
     {
 
     }
-    
-    public static Item getById(int index) {
-        if(itemList == null)
+
+    public static Item getById(int index)
+    {
+        if (itemList == null)
         {
             itemList = new ArrayList<>(RockBottomAPI.ITEM_REGISTRY.getUnmodifiable().values());
         }
