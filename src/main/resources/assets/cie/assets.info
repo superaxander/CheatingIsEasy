@@ -1,0 +1,4 @@
+loc.us_english=/loc/us_english.loc
+tex.button.up=/gui/up_button.png
+tex.button.down=/gui/down_button.png
+tex.button.trash_can=/gui/trashcan.png
