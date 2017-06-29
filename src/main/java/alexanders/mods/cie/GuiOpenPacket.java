@@ -25,7 +25,7 @@ public class GuiOpenPacket implements IPacket
     {
         game.scheduleAction(() ->
                             {
-                                game.getPlayer().openGuiContainer(new CheatGui(game.getPlayer()), new CheatContainer(game.getPlayer(), game.getPlayer().getInv(), new CheatInventory()));
+                                game.getPlayer().openGuiContainer(new CheatGui(game.getPlayer()), new CheatContainer(game.getPlayer(), game.getPlayer().getInv(), new CheatInventory(), new TrashInventory()));
                                 return true;
                             });
     }

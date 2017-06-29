@@ -46,20 +46,23 @@ public class CheatingIsEasy implements IMod
     @Override
     public String getDescription()
     {
-        return RockBottomAPI.getGame().getAssetManager().localize(RockBottomAPI.createRes(this, "desc.mod"));
+        return desc;
+    }
+
+    private CheatCommand cheatCommand;
+    private String desc;
+
+    @Override
+    public void initAssets(IGameInstance game, IAssetManager assetManager, IApiHandler apiHandler)
+    {
+        desc = assetManager.localize(RockBottomAPI.createRes(this, "desc.mod"));
+        cheatCommand = new CheatCommand("c", assetManager.localize(RockBottomAPI.createRes(this, "desc.command")), 10);
     }
 
     @Override
-    public void init(IGameInstance game, IAssetManager assetManager, IApiHandler apiHandler, IEventHandler eventHandler)
+    public void init(IGameInstance game, IApiHandler apiHandler, IEventHandler eventHandler)
     {
         RockBottomAPI.PACKET_REGISTRY.register(RockBottomAPI.PACKET_REGISTRY.getNextFreeId(), GuiOpenPacket.class);
-        IChatLog.registerCommand(new CheatCommand("c", assetManager.localize(RockBottomAPI.createRes(this, "desc.command")), 10));
-
-    }
-
-    @Override
-    public void postInit(IGameInstance game, IAssetManager assetManager, IApiHandler apiHandler, IEventHandler eventHandler)
-    {
-
+        IChatLog.registerCommand(cheatCommand);
     }
 }

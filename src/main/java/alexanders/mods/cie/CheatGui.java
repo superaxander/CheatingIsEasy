@@ -33,10 +33,11 @@ public class CheatGui extends GuiContainer
     public void initGui(IGameInstance game)
     {
         super.initGui(game);
+        
+        rows.clear();
 
         ItemContainer container = this.player.getContainer();
-
-
+        
         ArrayList<ComponentSlot> currentRow = new ArrayList<>(14);
 
         for (int i = 32; i < container.getSlotAmount() - 2; i++)
@@ -50,7 +51,7 @@ public class CheatGui extends GuiContainer
             currentRow.add(new ComponentSlot(this, slot, i, this.guiLeft + slot.x, this.guiTop + slot.y));
         }
         rows.add(currentRow.toArray(new ComponentSlot[currentRow.size()]));
-        trashSlot = new ComponentSlot(this, new TrashSlot(0, 0), container.getSlotAmount(), guiLeft, guiTop);
+        trashSlot = new ComponentSlot(this, new TrashSlot(container.containedInventories[2], 0, 0), container.getSlotAmount(), guiLeft, guiTop);
         upButton = new ComponentButton(this, 1, guiLeft + 286, guiTop + 83, 10, 10, "");
         downButton = new ComponentButton(this, 2, guiLeft + 286, guiTop + 133, 10, 10, "");
         updateComponents();
@@ -65,7 +66,7 @@ public class CheatGui extends GuiContainer
             ContainerSlot slot = container.getSlot(i);
             this.components.add(new ComponentSlot(this, slot, i, this.guiLeft + slot.x, this.guiTop + slot.y));
         }
-        System.out.println("New range is: " + currentIndex + ':' + currentIndex + 3);
+        
         outer_loop:
         for (int i = currentIndex; i < currentIndex + 3; i++)
         {
@@ -75,12 +76,10 @@ public class CheatGui extends GuiContainer
                 {
                     GuiComponent c = rows.get(i)[j];
                     c.y = guiTop + 86 + 20 * (i - currentIndex);
-                    //System.out.println("y:"+c.y);
                     components.add(c);
                 } catch (IndexOutOfBoundsException ignored)
                 {
                     break outer_loop;
-                    //ignored.printStackTrace();
                 }
             }
         }
@@ -93,9 +92,9 @@ public class CheatGui extends GuiContainer
     public void renderOverlay(IGameInstance game, IAssetManager manager, Graphics g)
     {
         super.renderOverlay(game, manager, g);
-        manager.getImage(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.trash_can")).draw(trashSlot.x, trashSlot.y, trashSlot.sizeX, trashSlot.sizeY);
-        manager.getImage(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.up")).draw(upButton.x, upButton.y, upButton.sizeX, upButton.sizeY);
-        manager.getImage(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.down")).draw(downButton.x, downButton.y, downButton.sizeX, downButton.sizeY);
+        manager.getTexture(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.trash_can")).draw(trashSlot.x, trashSlot.y, trashSlot.sizeX, trashSlot.sizeY);
+        manager.getTexture(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.up")).draw(upButton.x, upButton.y, upButton.sizeX, upButton.sizeY);
+        manager.getTexture(RockBottomAPI.createRes(CheatingIsEasy.instance, "button.down")).draw(downButton.x, downButton.y, downButton.sizeX, downButton.sizeY);
     }
 
     @Override
@@ -118,7 +117,6 @@ public class CheatGui extends GuiContainer
 
     private void scrollDown()
     {
-        System.out.println(rows.size());
         if (currentIndex + 1 < rows.size() - 3)
         {
             currentIndex++;
