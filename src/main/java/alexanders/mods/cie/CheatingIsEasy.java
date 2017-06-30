@@ -14,6 +14,8 @@ public class CheatingIsEasy implements IMod
 {
     public static CheatingIsEasy instance;
 
+    private CheatCommand cheatCommand;
+
     public CheatingIsEasy()
     {
         instance = this;
@@ -46,16 +48,12 @@ public class CheatingIsEasy implements IMod
     @Override
     public String getDescription()
     {
-        return desc;
+        return RockBottomAPI.getGame().getAssetManager().localize(RockBottomAPI.createRes(this, "desc.mod"));
     }
-
-    private CheatCommand cheatCommand;
-    private String desc;
 
     @Override
     public void initAssets(IGameInstance game, IAssetManager assetManager, IApiHandler apiHandler)
     {
-        desc = assetManager.localize(RockBottomAPI.createRes(this, "desc.mod"));
         cheatCommand = new CheatCommand("c", assetManager.localize(RockBottomAPI.createRes(this, "desc.command")), 10);
     }
 
